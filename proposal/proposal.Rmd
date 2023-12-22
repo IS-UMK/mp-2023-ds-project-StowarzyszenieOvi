@@ -11,18 +11,22 @@ library(broom)
 
 ## 1. Introduction
 
-
+W dzisiejszym zabieganym świecie, w którym tempo życia nieustannie przyspiesza, zadbanie o zdrowie psychiczne i fizyczne staje się niezmiernie istotne. Jednym z kluczowych elementów utrzymania równowagi zdrowotnej jest jakość snu. 
+Celem naszego projektu jest analiza dostępnego zbioru danych dotyczącego zdrowia snu i stylu życia, aby zidentyfikować potencjalne zależności i wzorce. Zależy nam na dostarczeniu praktycznych informacji na temat tego, jak aspekty stylu życia wpływają na sen i jak poprawa tych nawyków może przyczynić się do poprawy jakości snu - a tym samym do poprawy codziennego samopoczucia.
 
 ## 2. Data
-
-
+Baza dany, na podstawie której chcemy oprzeć nasz projekt nosi nazwę 'Sleep Health and Lifestyle Dataset'. Można znaleźć ją pod adresem https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset. Sleep Health and Lifestyle Dataset składa się z 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.
 
 ## 3. Data analysis plan
+W ramach projektu analizować będziemy szereg zmiennych, które obejmują kluczowe aspekty życia codziennego, takie jak:
+• Sleep Duration (hours): Liczba godzin snu dziennie.
+• Quality of Sleep (scale: 1-10): Subiektywna ocena jakości snu w skali od 1 do 10.
+• Physical Activity Level (minutes/day): Czas trwania codziennej aktywności fizycznej.
+• Stress Level (scale: 1-10): Subiektywna ocena poziomu stresu w skali od 1 do 10.
+• BMI Category: Kategoria BMI osoby (np. Niedowaga, Normalna, Nadwaga).
+• Blood Pressure (systolic/diastolic): Pomiar ciśnienia krwi, wyrażony jako ciśnienie skurczowe nad ciśnieniem rozkurczowym.
+• Heart Rate (bpm): Spoczynkowe tętno osoby w uderzeniach na minutę.
+• Daily Steps: Liczba kroków wykonanych przez osobę dziennie.
+• Sleep Disorder: Obecność lub brak zaburzeń snu (Brak, Bezsenność, Bezdech senny).
 
-
-links:
-https://www.internetworldstats.com/stats.htm
-
-https://www.kaggle.com/datasets/ahmedmuntasir/facebook-addiction-disorder
-
-
+Nasza analiza danych będzie polegać na znalezieniu istotnych korelacji między zmiennymi, zwizualizowaniu ich w miarę możliwości oraz wyciągnięciu wniosków, które mogłyby być wykorzystane praktycznie w życiu człowieka.
