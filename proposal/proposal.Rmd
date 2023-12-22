@@ -1,5 +1,5 @@
 ---
-title: "Project proposal"
+title: "Zdrowy Sen na Wyciągnięcie Ręki - project proposal"
 author: "StowarzyszenieOvi"
 output: github_document
 ---
