@@ -1,2 +1,2 @@
-url <- "https://raw.githubusercontent.com/IS-UMK/mp-2023-ds-project-StowarzyszenieOvi/master/data/Sleep_dataset.csv?token=GHSAT0AAAAAACNMDJWC6XF3RAOH55D7QKXIZNVQ6OQ"
+url <- "https://drive.google.com/file/d/1bFMvFWDZk4NVmWx3VS9X4DQ4OUVX4cdM/view?usp=sharing"
 Sleep_dataset <- read.csv(url)
