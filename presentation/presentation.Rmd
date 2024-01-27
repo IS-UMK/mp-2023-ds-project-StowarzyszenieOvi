@@ -31,17 +31,29 @@ library(datasets)
 knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "80%")
 ```
 
+
+
 ```{r load-data, include=FALSE}
-# Load your data here
+
+# Load the dataset
+url <- "https://raw.githubusercontent.com/IS-UMK/mp-2023-ds-project-StowarzyszenieOvi/master/data/Sleep_dataset.csv?token=GHSAT0AAAAAACNMDJWC6XF3RAOH55D7QKXIZNVQ6OQ"
+
+# Read the dataset from the URL
+Sleep_dataset <- read.csv(url)
+summary(Sleep_dataset)
+
 ```
 
-```{r}
-style_xaringan(
-  title_slide_background_image = "img/confetti.jpg"
-)
+
+
+```{r, echo = FALSE}
+ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
+  geom_bar() +
+  geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white") +
+  scale_fill_manual(values = c("#FFA500", "#0000FF"))
+
+
 ```
-
-
 class: center, middle
 
 ## A statement of the overall goal / research question

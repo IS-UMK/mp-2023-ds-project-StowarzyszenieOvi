@@ -1,23 +1,23 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/i0EUIDTo)
-Nasz projekt
+Project title
 ================
 by StowarzyszenieOvi
 
 ## Summary
 
-Write-up of your project and findings go here.  Think of this as the text of
-your presentation.  The length should be roughly 5 minutes when read out loud.
-Although pacing varies, a 5-minute speech is roughly 750 words. To count the
-words, select `Word Count` from the `Edit` menu. This tool will only count the
-words in prose and comments in code chunks, but ignore the rest parts of code
-chunks. 
+Write-up of your project and findings go here. Think of this as the text
+of your presentation. The length should be roughly 5 minutes when read
+out loud. Although pacing varies, a 5-minute speech is roughly 750
+words. To count the words, select `Word Count` from the `Edit` menu.
+This tool will only count the words in prose and comments in code
+chunks, but ignore the rest parts of code chunks.
 
-You can also load your data here and present any analysis results / plots, but I
-strongly urge you to keep that to a minimum (maybe only the most important
-graphic, if you have one you can choose). And make sure to hide your code with
-`echo = FALSE` unless the point you are trying to make is about the code
-itself. Your results with proper output and graphics go in your presentation,
-this space is for a brief summary of your project.
+You can also load your data here and present any analysis results /
+plots, but I strongly urge you to keep that to a minimum (maybe only the
+most important graphic, if you have one you can choose). And make sure
+to hide your code with `echo = FALSE` unless the point you are trying to
+make is about the code itself. Your results with proper output and
+graphics go in your presentation, this space is for a brief summary of
+your project.
 
 ## Presentation
 
