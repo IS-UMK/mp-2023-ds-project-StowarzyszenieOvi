@@ -1,7 +1,7 @@
 
 ---
-title: "thinking...."
-subtitle: "...."
+title: "Sleep Health and Lifestyle Dataset"
+subtitle: "Analiza jakości snu a lifestylem"
 author: "StowarzyszenieOvi <br> viol68, Tamirami, rvai00"
 institute: "Nicolaus Copernicus University in Toruń"
 date: "`r Sys.Date()`"
@@ -31,58 +31,69 @@ library(datasets)
 knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "80%")
 ```
 
-```{r}
+```{r, include=FALSE}
 getwd()
 ```
 
 
 
-```{r}
+
+
+```{r, include=FALSE}
 # Specify the path to your CSV file
 file_path <- "Sleep_dataset.csv"
 
 # Load data from the CSV file into a data frame
 Sleep_dataset <- read.csv(file_path)
 
-# Display a summary of the loaded data
-summary(Sleep_dataset)
+
 
 ```
 
+#Problem
+- Jakość snu to jeden z głównych produktów zdrowego stylu życia. Spędzamy około jednej trzeciej naszego życia na śnie — albo przynajmniej powinniśmy. Niestety, wielu z nas nie osiąga tego celu. Według Narodowych Instytutów Zdrowia, bezsenność dotyka około jednej trzeciej ogólnej populacji, co czyni ją najczęstszym zaburzeniem snu w Stanach Zjednoczonych.
+#Rozwiązanie
+- Dzięki rozwojowi sztucznej inteligencji modele uczenia maszynowego mogą być wykorzystywane do trenowania na zestawie danych treningowych, a następnie testowane na zestawie danych testowych.
 
+---
 
-```{r}
-# Load the dataset
+class: inverse, center, middle
+#Ogólny zarys bazy danych
+Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.Występują następujące wiersze:
 
-#url <- "https://drive.google.com/file/d/1bFMvFWDZk4NVmWx3VS9X4DQ4OUVX4cdM/view?usp=sharing"
-
-# Pobierz plik do lokalnego folderu
-#local_path <- "C:/git/mp-2023-ds-project-StowarzyszenieOvi/data/Sleep_dataset.csv"
-#download.file(url, destfile = local_path, mode = "wb")
-
-# Wczytaj dane z lokalnej ścieżki
-#Sleep_dataset <- read.csv(url)
-3summary(Sleep_dataset)
-
-```
-
-
-```{r load-data, include=FALSE}
-
-# Load the dataset
-
-url <- "https://raw.githubusercontent.com/IS-UMK/mp-2023-ds-project-StowarzyszenieOvi/master/data/Sleep_dataset.csv?token=GHSAT0AAAAAACNMDJWC6XF3RAOH55D7QKXIZNVQ6OQ"
-
-# Read the dataset from the URL
-Sleep_dataset <- read.csv(url)
-summary(Sleep_dataset)
-
-```
-
-Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.Występują następujące wiersze: 
 ```{r, echo = FALSE}
 names(Sleep_dataset)
 ```
+---
+#Właściwości danych
+.pull-left[
+Person ID: Identyfikator dla każdej jednostki.
+
+Gender: Płeć osoby (Male/Female).
+
+Age: Wiek osoby w latach.
+
+Occupation: Zawód lub profesja osoby.
+
+Sleep Duration (hours): Ilość godzin snu danej osoby dziennie.
+
+Quality of Sleep (scale: 1-10): Subiektywna ocena jakości snu, w skali od 1 do 10.
+
+Physical Activity Level (minutes/day): Ilość minut, przez które osoba angażuje się w aktywność fizyczną codziennie.$^*$
+]
+.pull-right[
+Stress Level (skala: 1-10): Subiektywna ocena poziomu stresu doświadczanego przez osobę, w skali 1- 10.
+BMI Category: Kategoria BMI osoby (np. Underweight, Normal, Overweight).
+
+Blood Pressure (systolic/diastolic): Pomiar ciśnienia krwi osoby, określony jako ciśnienie skurczowe nad ciśnieniem rozkurczowym.
+
+Heart Rate (bpm): Spoczynkowe tętno serca osoby, wyrażone w uderzeniach na minutę.
+
+Daily Steps: Ilość kroków, które osoba wykonuje dziennie.
+
+Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia, Sleep Apnea).
+]
+
 
 
 ---
@@ -156,16 +167,16 @@ or text in two columns $^*$
 
 ---
 
-# Code```{r boring-regression}
+# Code
+```{r boring-regression}
 # a boring regression
 model <- lm(dist ~ speed, data = cars)
 tidy(model)
 glance(model)
 ```
-
 ---
 
-# Plots
+#Plots
 
 ```{r recode-species, echo = FALSE}
 # In this chunk I'm doing a bunch of analysis that I don't want to present 

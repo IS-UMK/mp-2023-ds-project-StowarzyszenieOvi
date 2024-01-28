@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>thinking….</title>
+    <title>Sleep Health and Lifestyle Dataset</title>
     <meta charset="utf-8" />
     <meta name="author" content="StowarzyszenieOvi   viol68, Tamirami, rvai00" />
-    <meta name="date" content="2024-01-27" />
+    <meta name="date" content="2024-01-28" />
     <script src="libs/header-attrs-2.25/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -13,10 +13,10 @@
 class: center, middle, inverse, title-slide
 
 .title[
-# thinking….
+# Sleep Health and Lifestyle Dataset
 ]
 .subtitle[
-## ….
+## Analiza jakości snu a lifestylem
 ]
 .author[
 ### StowarzyszenieOvi <br> viol68, Tamirami, rvai00
@@ -25,7 +25,7 @@ class: center, middle, inverse, title-slide
 ### Nicolaus Copernicus University in Toruń
 ]
 .date[
-### 2024-01-27
+### 2024-01-28
 ]
 
 ---
@@ -39,7 +39,21 @@ class: center, middle, inverse, title-slide
 
 
 
-Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. 
+
+
+
+
+#Problem
+- Jakość snu to jeden z głównych produktów zdrowego stylu życia. Spędzamy około jednej trzeciej naszego życia na śnie — albo przynajmniej powinniśmy. Niestety, wielu z nas nie osiąga tego celu. Według Narodowych Instytutów Zdrowia, bezsenność dotyka około jednej trzeciej ogólnej populacji, co czyni ją najczęstszym zaburzeniem snu w Stanach Zjednoczonych.
+#Rozwiązanie
+- Dzięki rozwojowi sztucznej inteligencji modele uczenia maszynowego mogą być wykorzystywane do trenowania na zestawie danych treningowych, a następnie testowane na zestawie danych testowych.
+
+---
+
+class: inverse, center, middle
+#Ogólny zarys bazy danych
+Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.Występują następujące wiersze:
+
 
 ```
 ##  [1] "Person.ID"               "Gender"                 
@@ -50,9 +64,45 @@ Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kol
 ## [11] "Heart.Rate"              "Daily.Steps"            
 ## [13] "Sleep.Disorder"
 ```
+---
+#Właściwości danych
+.pull-left[
+Person ID: Identyfikator dla każdej jednostki.
+
+Gender: Płeć osoby (Male/Female).
+
+Age: Wiek osoby w latach.
+
+Occupation: Zawód lub profesja osoby.
+
+Sleep Duration (hours): Ilość godzin snu danej osoby dziennie.
+
+Quality of Sleep (scale: 1-10): Subiektywna ocena jakości snu, w skali od 1 do 10.
+
+Physical Activity Level (minutes/day): Ilość minut, przez które osoba angażuje się w aktywność fizyczną codziennie.
+
+Stress Level (scale: 1-10): Subiektywna ocena poziomu stresu doświadczanego przez osobę, w skali od 1 do 10.$^*$
+]
+.pull-right[
+BMI Category: Kategoria BMI osoby (np. Underweight, Normal, Overweight).
+
+Blood Pressure (systolic/diastolic): Pomiar ciśnienia krwi osoby, określony jako ciśnienie skurczowe nad ciśnieniem rozkurczowym.
+
+Heart Rate (bpm): Spoczynkowe tętno serca osoby, wyrażone w uderzeniach na minutę.
+
+Daily Steps: Ilość kroków, które osoba wykonuje dziennie.
+
+Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia, Sleep Apnea).
+]
+
+
 
 ---
-&lt;img src="presentation_files/figure-html/unnamed-chunk-2-1.png" width="80%" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-4-1.png" width="80%" /&gt;
+---
+
+
+---
 class: center, middle
 
 ## A statement of the overall goal / research question
@@ -113,7 +163,6 @@ or text in two columns `\(^*\)`
 
 # Code
 
-
 ```r
 # a boring regression
 model &lt;- lm(dist ~ speed, data = cars)
@@ -139,10 +188,9 @@ glance(model)
 ## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
 ## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
 ```
-
 ---
 
-# Plots
+#Plots
 
 
 
@@ -157,7 +205,7 @@ glance(model)
 - goes here
 ]
 .pull-right[
-&lt;img src="presentation_files/figure-html/unnamed-chunk-3-1.png" width="100%" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
 ]
 
 ---
