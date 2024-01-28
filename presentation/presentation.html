@@ -106,6 +106,7 @@ Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia,
 
 
 
+
 ---
 #Liczba kobiet i mężczyzn w badaniu
 
@@ -132,6 +133,9 @@ Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia,
 
 
 
+
+
+
 ---
 
 ```
@@ -139,8 +143,95 @@ Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia,
 ```
 
 &lt;img src="presentation_files/figure-html/unnamed-chunk-7-1.png" width="80%" /&gt;
----
 
+
+
+
+
+
+---
+#Długość snu w zależności od wykonywanego zawodu
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-8-1.png" width="80%" /&gt;
+
+
+
+---
+&lt;img src="presentation_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
+
+
+
+
+---
+#Długość snu w zależności od aktywności fizycznej
+- Ludzie, którzy dłużej śpią mają większy poziom aktywności fizycznej
+
+```
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+```
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-10-1.png" width="80%" /&gt;
+
+
+
+
+---
+#Aktywność fizyczna i liczba kroków dziennych wykazywały silną korelację wynoszącą 0,77.
+
+
+```
+##                                Age Sleep.Duration Quality.of.Sleep
+## Age                      1.0000000     0.34470936       0.47373388
+## Sleep.Duration           0.3447094     1.00000000       0.88321300
+## Quality.of.Sleep         0.4737339     0.88321300       1.00000000
+## Physical.Activity.Level  0.1789927     0.21236031       0.19289645
+## Stress.Level            -0.4223445    -0.81102303      -0.89875203
+## Heart.Rate              -0.2256062    -0.51645489      -0.65986473
+## Daily.Steps              0.0579734    -0.03953254       0.01679141
+##                         Physical.Activity.Level Stress.Level  Heart.Rate
+## Age                                  0.17899272  -0.42234448 -0.22560619
+## Sleep.Duration                       0.21236031  -0.81102303 -0.51645489
+## Quality.of.Sleep                     0.19289645  -0.89875203 -0.65986473
+## Physical.Activity.Level              1.00000000  -0.03413446  0.13697098
+## Stress.Level                        -0.03413446   1.00000000  0.67002646
+## Heart.Rate                           0.13697098   0.67002646  1.00000000
+## Daily.Steps                          0.77272305   0.18682895 -0.03030858
+##                         Daily.Steps
+## Age                      0.05797340
+## Sleep.Duration          -0.03953254
+## Quality.of.Sleep         0.01679141
+## Physical.Activity.Level  0.77272305
+## Stress.Level             0.18682895
+## Heart.Rate              -0.03030858
+## Daily.Steps              1.00000000
+```
+
+
+
+```
+## Warning in chisq.test(table(Sleep_dataset$Daily.Steps,
+## Sleep_dataset$Physical.Activity.Level)): Aproksymacja chi-kwadrat może być
+## niepoprawna
+```
+
+```
+## 
+## 	Pearson's Chi-squared test
+## 
+## data:  table(Sleep_dataset$Daily.Steps, Sleep_dataset$Physical.Activity.Level)
+## X-squared = 3822.1, df = 285, p-value &lt; 2.2e-16
+```
+
+
+```
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+```
+
+&lt;img src="presentation_files/figure-html/unnamed-chunk-13-1.png" width="80%" /&gt;
+
+
+
+---
 class: inverse, center, middle
 
 # Section title
@@ -193,32 +284,11 @@ or text in two columns `\(^*\)`
 
 ---
 
-# Code
-
-```r
+# Code```{r boring-regression}
 # a boring regression
 model &lt;- lm(dist ~ speed, data = cars)
 tidy(model)
-```
-
-```
-## # A tibble: 2 × 5
-##   term        estimate std.error statistic  p.value
-##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
-## 1 (Intercept)   -17.6      6.76      -2.60 1.23e- 2
-## 2 speed           3.93     0.416      9.46 1.49e-12
-```
-
-```r
 glance(model)
-```
-
-```
-## # A tibble: 1 × 12
-##   r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC
-##       &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1     0.651         0.644  15.4      89.6 1.49e-12     1  -207.  419.  425.
-## # ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;
 ```
 ---
 
@@ -237,7 +307,7 @@ glance(model)
 - goes here
 ]
 .pull-right[
-&lt;img src="presentation_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
 ]
 
 ---
@@ -324,7 +394,7 @@ background-image: url(https://images.unsplash.com/photo-1535448033526-c0e85c9e69
 You can write LaTeX math expressions inside a pair of dollar signs, e.g. &amp;#36;\alpha+\beta$ renders `\(\alpha+\beta\)`. You can use the display style with double dollar signs:
 
 ```
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
+`$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$`
 ```
 
 `$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$`

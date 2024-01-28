@@ -108,6 +108,7 @@ Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia,
 
 
 
+
 ---
 #Liczba kobiet i mężczyzn w badaniu
 
@@ -143,24 +144,33 @@ ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
 
 ---
 ```{r, echo=FALSE}
+
+library(dplyr)
 library(ggplot2)
 
-ggplot(data = Sleep_dataset, aes(x = Occupation, fill = factor(Stress.Level))) +
-  geom_bar(position = "dodge") +
-  labs(title = "Poziom stresu w zależności od wykonywanego zawodu",
-       x = "Occupation",
-       y = "Count") +
-  scale_fill_manual(values = c("1" = "green", "2" = "yellow", "3" = "orange", "4" = "red"),
-                    name = "Stress Level")
-  
+# Calculate average stress level for each occupation
+average_stress_by_occupation <- Sleep_dataset %>%
+  group_by(Occupation) %>%
+  summarize(Average_Stress = mean(Stress.Level, na.rm = TRUE))
 
+# Create a histogram
+ggplot(average_stress_by_occupation, aes(x = reorder(Occupation, Average_Stress), y = Average_Stress, fill = Occupation)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(title = "Average Stress Levels by Occupation",
+       x = "Occupation",
+       y = "Average Stress Level") +
+  scale_fill_manual(values = rainbow(nrow(average_stress_by_occupation))) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
 ```
+
+
+
 
 
 
 ---
 ```{r, echo=FALSE}
-
 library(ggplot2)
 
 ggplot(data = Sleep_dataset, aes(x = `Quality.of.Sleep`, y = `Sleep.Duration`)) +
@@ -172,8 +182,71 @@ ggplot(data = Sleep_dataset, aes(x = `Quality.of.Sleep`, y = `Sleep.Duration`)) 
 
 
 ```
----
 
+
+
+
+
+
+---
+#Długość snu w zależności od wykonywanego zawodu
+
+```{r, echo=FALSE}
+ggplot(Sleep_dataset, aes(y = `Sleep.Duration`)) +
+  geom_bar() +
+  labs(x = "Count") +
+  theme(axis.text.x=element_text(size=7, angle=90,hjust=0.99)) +
+  facet_wrap(vars(Occupation))
+```
+
+
+
+---
+```{r, echo=FALSE}
+ggplot() + 
+  geom_boxplot(data = Sleep_dataset, mapping = aes(y = `Daily.Steps`, x = Occupation)) +
+  theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
+```
+
+
+
+
+---
+#Długość snu w zależności od aktywności fizycznej
+- Ludzie, którzy dłużej śpią mają większy poziom aktywności fizycznej
+```{r, echo=FALSE}
+ggplot() + 
+  geom_point(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Sleep.Duration`)) +
+  geom_smooth(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Sleep.Duration`))
+```
+
+
+
+
+---
+#Aktywność fizyczna i liczba kroków dziennych wykazywały silną korelację wynoszącą 0,77.
+
+```{r, echo=FALSE}
+set.seed(42)
+#Here I create a correlation matrix with all the quantitative variables
+cor(Sleep_dataset[c(3, 5, 6, 7, 8, 11, 12)])
+```
+
+
+```{r, echo=FALSE}
+chisq_steps_physical <- chisq.test(table(Sleep_dataset$`Daily.Steps`,Sleep_dataset$`Physical.Activity.Level`))
+chisq_steps_physical
+```
+
+```{r, echo=FALSE}
+ggplot() + 
+  geom_point(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Daily.Steps`)) +
+  geom_smooth(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Daily.Steps`))
+```
+
+
+
+---
 class: inverse, center, middle
 
 # Section title
@@ -226,8 +299,7 @@ or text in two columns $^*$
 
 ---
 
-# Code
-```{r boring-regression}
+# Code```{r boring-regression}
 # a boring regression
 model <- lm(dist ~ speed, data = cars)
 tidy(model)
