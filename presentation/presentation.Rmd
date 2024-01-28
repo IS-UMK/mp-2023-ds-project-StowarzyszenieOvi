@@ -15,7 +15,6 @@ output:
       highlightLines: true
       countIncrementalSlides: false
 ---
-
 ```{r load-packages, include = FALSE}
 # Add any additional packages you need to this chunk
 library(tidyverse)
@@ -24,6 +23,7 @@ library(palmerpenguins)
 library(knitr)
 library(xaringanthemer)
 library(datasets)
+library(ggplot2)
 ```
 
 ```{r setup, include=FALSE}
@@ -34,10 +34,6 @@ knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618,
 ```{r, include=FALSE}
 getwd()
 ```
-
-
-
-
 
 ```{r, include=FALSE}
 # Specify the path to your CSV file
@@ -50,20 +46,33 @@ Sleep_dataset <- read.csv(file_path)
 
 ```
 
-#Problem
+# Problem
 - Jakość snu to jeden z głównych produktów zdrowego stylu życia. Spędzamy około jednej trzeciej naszego życia na śnie — albo przynajmniej powinniśmy. Niestety, wielu z nas nie osiąga tego celu. Według Narodowych Instytutów Zdrowia, bezsenność dotyka około jednej trzeciej ogólnej populacji, co czyni ją najczęstszym zaburzeniem snu w Stanach Zjednoczonych.
-#Rozwiązanie
+# Rozwiązanie
 - Dzięki rozwojowi sztucznej inteligencji modele uczenia maszynowego mogą być wykorzystywane do trenowania na zestawie danych treningowych, a następnie testowane na zestawie danych testowych.
 
----
 
+
+
+
+
+---
 class: inverse, center, middle
-#Ogólny zarys bazy danych
+# Ogólny zarys bazy danych
 Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.Występują następujące wiersze:
 
 ```{r, echo = FALSE}
 names(Sleep_dataset)
+
 ```
+
+
+
+
+
+
+
+
 ---
 #Właściwości danych
 .pull-left[
@@ -96,7 +105,12 @@ Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia,
 
 
 
+
+
+
 ---
+#Liczba kobiet i mężczyzn w badaniu
+
 ```{r, echo = FALSE}
 ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
   geom_bar() +
@@ -105,14 +119,59 @@ ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
 
 
 ```
+
+
+
+
+
+
+
 ---
+#Wykonywane zawody przez badanych
+```{r, echo=FALSE}
+ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
+  geom_bar() +
+  labs(y = "Count") +
+  theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
+```
+
+
+
+
+
 
 
 ---
-class: center, middle
+```{r, echo=FALSE}
+library(ggplot2)
 
-## A statement of the overall goal / research question
+ggplot(data = Sleep_dataset, aes(x = Occupation, fill = factor(Stress.Level))) +
+  geom_bar(position = "dodge") +
+  labs(title = "Poziom stresu w zależności od wykonywanego zawodu",
+       x = "Occupation",
+       y = "Count") +
+  scale_fill_manual(values = c("1" = "green", "2" = "yellow", "3" = "orange", "4" = "red"),
+                    name = "Stress Level")
+  
 
+```
+
+
+
+---
+```{r, echo=FALSE}
+
+library(ggplot2)
+
+ggplot(data = Sleep_dataset, aes(x = `Quality.of.Sleep`, y = `Sleep.Duration`)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE) +
+  labs(title = "Relacja pomiędzy jakością snu a długością snu",
+       x = "Quality of Sleep",
+       y = "Sleep Duration")
+
+
+```
 ---
 
 class: inverse, center, middle

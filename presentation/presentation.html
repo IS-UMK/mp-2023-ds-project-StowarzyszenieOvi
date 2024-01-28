@@ -38,20 +38,19 @@ class: center, middle, inverse, title-slide
 
 
 
-
-
-
-
-
-#Problem
+# Problem
 - Jakość snu to jeden z głównych produktów zdrowego stylu życia. Spędzamy około jednej trzeciej naszego życia na śnie — albo przynajmniej powinniśmy. Niestety, wielu z nas nie osiąga tego celu. Według Narodowych Instytutów Zdrowia, bezsenność dotyka około jednej trzeciej ogólnej populacji, co czyni ją najczęstszym zaburzeniem snu w Stanach Zjednoczonych.
-#Rozwiązanie
+# Rozwiązanie
 - Dzięki rozwojowi sztucznej inteligencji modele uczenia maszynowego mogą być wykorzystywane do trenowania na zestawie danych treningowych, a następnie testowane na zestawie danych testowych.
 
----
 
+
+
+
+
+---
 class: inverse, center, middle
-#Ogólny zarys bazy danych
+# Ogólny zarys bazy danych
 Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.Występują następujące wiersze:
 
 
@@ -64,6 +63,14 @@ Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kol
 ## [11] "Heart.Rate"              "Daily.Steps"            
 ## [13] "Sleep.Disorder"
 ```
+
+
+
+
+
+
+
+
 ---
 #Właściwości danych
 .pull-left[
@@ -79,11 +86,10 @@ Sleep Duration (hours): Ilość godzin snu danej osoby dziennie.
 
 Quality of Sleep (scale: 1-10): Subiektywna ocena jakości snu, w skali od 1 do 10.
 
-Physical Activity Level (minutes/day): Ilość minut, przez które osoba angażuje się w aktywność fizyczną codziennie.
-
-Stress Level (scale: 1-10): Subiektywna ocena poziomu stresu doświadczanego przez osobę, w skali od 1 do 10.$^*$
+Physical Activity Level (minutes/day): Ilość minut, przez które osoba angażuje się w aktywność fizyczną codziennie.$^*$
 ]
 .pull-right[
+Stress Level (skala: 1-10): Subiektywna ocena poziomu stresu doświadczanego przez osobę, w skali 1- 10.
 BMI Category: Kategoria BMI osoby (np. Underweight, Normal, Overweight).
 
 Blood Pressure (systolic/diastolic): Pomiar ciśnienia krwi osoby, określony jako ciśnienie skurczowe nad ciśnieniem rozkurczowym.
@@ -97,16 +103,42 @@ Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia,
 
 
 
+
+
+
 ---
+#Liczba kobiet i mężczyzn w badaniu
+
 &lt;img src="presentation_files/figure-html/unnamed-chunk-4-1.png" width="80%" /&gt;
+
+
+
+
+
+
+
+---
+#Wykonywane zawody przez badanych
+&lt;img src="presentation_files/figure-html/unnamed-chunk-5-1.png" width="80%" /&gt;
+
+
+
+
+
+
+
+---
+&lt;img src="presentation_files/figure-html/unnamed-chunk-6-1.png" width="80%" /&gt;
+
+
+
 ---
 
+```
+## `geom_smooth()` using formula = 'y ~ x'
+```
 
----
-class: center, middle
-
-## A statement of the overall goal / research question
-
+&lt;img src="presentation_files/figure-html/unnamed-chunk-7-1.png" width="80%" /&gt;
 ---
 
 class: inverse, center, middle
@@ -205,7 +237,7 @@ glance(model)
 - goes here
 ]
 .pull-right[
-&lt;img src="presentation_files/figure-html/unnamed-chunk-5-1.png" width="100%" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-8-1.png" width="100%" /&gt;
 ]
 
 ---
