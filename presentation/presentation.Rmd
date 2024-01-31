@@ -54,7 +54,7 @@ style_xaringan(
 
 class: inverse, center, middle
 # **Cel Badawczy**
-Nasza praca na celu analizę zbioru danych dotyczącego snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Dążymy do zidentyfikowania potencjalnych zależności i wzorców, skupiając się na różnicach wynikających z różnych profesji. Zależy nam na zrozumieniu, czy istnieją konkretne zawody, które bardziej niż inne doświadczają trudności związanych ze snem.
+Nasze badanie ma na celu analizę zestawu danych dotyczących snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Naszym głównym celem jest identyfikacja potencjalnych zależności i wzorców, przy skoncentrowaniu uwagi nie tylko na różnicach między poszczególnymi profesjami, ale także na powiązaniach z poziomem doświadczanego stresu. Chcemy lepiej zrozumieć, czy istnieją konkretne grupy zawodowe, które bardziej niż inne doświadczają trudności związanych ze snem i czy te trudności mogą być powiązane z poziomem stresu w danym środowisku zawodowym.
 
 ---
 class: inverse, center, middle
@@ -76,7 +76,7 @@ ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
 theme(panel.background = element_rect(fill = "#FCE4EC"))
 ```
 
-```{r rozkład_wieku}
+```{r rozkład_wieku, echo=FALSE}
 ggplot(Sleep_dataset, aes(x = Age, fill = Age)) +
   geom_histogram(binwidth = 5, color = "#871F78", position = "identity") +
   scale_fill_viridis_c() +
@@ -95,13 +95,11 @@ ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
 ```
 
 ---
-```{r matrix}
-numeric_Sleep_dataset <- df[sapply(df, is.numeric)]
+```{r matrix, fig.height=10, fig.width=10, echo=FALSE}
+numeric_Sleep_dataset <- Sleep_dataset[sapply(Sleep_dataset, is.numeric)]
 
-# Calculate the correlation matrix
 correlation_matrix <- cor(numeric_Sleep_dataset)
 
-# Plot the heatmap
 corrplot(correlation_matrix, method="color", addCoef.col="black", tl.col="black", tl.srt=45)
 ```
 
