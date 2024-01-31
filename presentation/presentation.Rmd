@@ -24,6 +24,7 @@ library(knitr)
 library(xaringanthemer)
 library(datasets)
 library(ggplot2)
+library(kableExtra)
 ```
 
 ```{r setup, include=FALSE}
@@ -42,35 +43,26 @@ file_path <- "Sleep_dataset.csv"
 # Load data from the CSV file into a data frame
 Sleep_dataset <- read.csv(file_path)
 
-
-
 ```
 
-# Problem
-- Jakość snu to jeden z głównych produktów zdrowego stylu życia. Spędzamy około jednej trzeciej naszego życia na śnie — albo przynajmniej powinniśmy. Niestety, wielu z nas nie osiąga tego celu. Według Narodowych Instytutów Zdrowia, bezsenność dotyka około jednej trzeciej ogólnej populacji, co czyni ją najczęstszym zaburzeniem snu w Stanach Zjednoczonych.
-# Rozwiązanie
-- Dzięki rozwojowi sztucznej inteligencji modele uczenia maszynowego mogą być wykorzystywane do trenowania na zestawie danych treningowych, a następnie testowane na zestawie danych testowych.
+```{r, echo=FALSE}
+style_xaringan(
+  title_slide_background_image = "img/background_img2.webp"
+)
+```
 
-
-
-
-
+class: inverse, center, middle
+# **Cel Badawczy**
+Nasza praca na celu analizę zbioru danych dotyczącego snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Dążymy do zidentyfikowania potencjalnych zależności i wzorców, skupiając się na różnicach wynikających z różnych profesji. Zależy nam na zrozumieniu, czy istnieją konkretne zawody, które bardziej niż inne doświadczają trudności związanych ze snem.
 
 ---
 class: inverse, center, middle
-# Ogólny zarys bazy danych
-Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami.Występują następujące wiersze:
+# O bazie danych
+Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. Zmienne, na podstawie których została wykonana analiza to:
 
-```{r, echo = FALSE}
+```{r wyświetlenie_zmiennych, echo=FALSE}
 names(Sleep_dataset)
-
 ```
-
-
-
-
-
-
 
 
 ---
