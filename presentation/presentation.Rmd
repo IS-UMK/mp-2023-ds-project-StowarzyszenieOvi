@@ -25,6 +25,7 @@ library(xaringanthemer)
 library(datasets)
 library(ggplot2)
 library(kableExtra)
+library(corrplot)
 ```
 
 ```{r setup, include=FALSE}
@@ -71,8 +72,16 @@ names(Sleep_dataset)
 ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
   geom_bar() +
   geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white") +
-  scale_fill_manual(values = c("#FF9933", "#6666FF")) +
+  scale_fill_manual(values = c("#9999CC", "#66CC99")) +
 theme(panel.background = element_rect(fill = "#FCE4EC"))
+```
+
+```{r rozkład_wieku}
+ggplot(Sleep_dataset, aes(x = Age, fill = Age)) +
+  geom_histogram(binwidth = 5, color = "#871F78", position = "identity") +
+  scale_fill_viridis_c() +
+  labs(title = "Rozkład Wieku", x = "Wiek", y = "Liczba osób") +
+  theme(panel.background = element_rect(fill = "#FCE4EC"))
 ```
 
 
@@ -85,6 +94,16 @@ ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
   theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
 ```
 
+---
+```{r matrix}
+numeric_Sleep_dataset <- df[sapply(df, is.numeric)]
+
+# Calculate the correlation matrix
+correlation_matrix <- cor(numeric_Sleep_dataset)
+
+# Plot the heatmap
+corrplot(correlation_matrix, method="color", addCoef.col="black", tl.col="black", tl.srt=45)
+```
 
 
 
