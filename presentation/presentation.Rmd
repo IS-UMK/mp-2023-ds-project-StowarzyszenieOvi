@@ -1,7 +1,7 @@
 
 ---
 title: "Sleep Health and Lifestyle Dataset"
-subtitle: "Analiza jakości snu a lifestylem"
+subtitle: "Analiza jakości snu na podstawie stylu życia"
 author: "StowarzyszenieOvi <br> viol68, Tamirami, rvai00"
 institute: "Nicolaus Copernicus University in Toruń"
 date: "`r Sys.Date()`"
@@ -58,65 +58,22 @@ Nasza praca na celu analizę zbioru danych dotyczącego snu i stylu życia, ze s
 ---
 class: inverse, center, middle
 # O bazie danych
-Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. Zmienne, na podstawie których została wykonana analiza to:
+Zestaw danych dotyczący snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. Zmienne, na podstawie których została wykonana analiza to:
 
 ```{r wyświetlenie_zmiennych, echo=FALSE}
 names(Sleep_dataset)
 ```
 
-
 ---
-#Właściwości danych
-.pull-left[
-Person ID: Identyfikator dla każdej jednostki.
+#Dane demograficzne
 
-Gender: Płeć osoby (Male/Female).
-
-Age: Wiek osoby w latach.
-
-Occupation: Zawód lub profesja osoby.
-
-Sleep Duration (hours): Ilość godzin snu danej osoby dziennie.
-
-Quality of Sleep (scale: 1-10): Subiektywna ocena jakości snu, w skali od 1 do 10.
-
-Physical Activity Level (minutes/day): Ilość minut, przez które osoba angażuje się w aktywność fizyczną codziennie.$^*$
-]
-.pull-right[
-Stress Level (skala: 1-10): Subiektywna ocena poziomu stresu doświadczanego przez osobę, w skali 1- 10.
-BMI Category: Kategoria BMI osoby (np. Underweight, Normal, Overweight).
-
-Blood Pressure (systolic/diastolic): Pomiar ciśnienia krwi osoby, określony jako ciśnienie skurczowe nad ciśnieniem rozkurczowym.
-
-Heart Rate (bpm): Spoczynkowe tętno serca osoby, wyrażone w uderzeniach na minutę.
-
-Daily Steps: Ilość kroków, które osoba wykonuje dziennie.
-
-Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia, Sleep Apnea).
-]
-
-
-
-
-
-
-
----
-#Liczba kobiet i mężczyzn w badaniu
-
-```{r, echo = FALSE}
+```{r rozkład_płci, echo = FALSE}
 ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
   geom_bar() +
   geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white") +
-  scale_fill_manual(values = c("#FFA500", "#0000FF"))
-
-
+  scale_fill_manual(values = c("#FF9933", "#6666FF")) +
+theme(panel.background = element_rect(fill = "#FCE4EC"))
 ```
-
-
-
-
-
 
 
 ---
