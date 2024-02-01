@@ -49,18 +49,33 @@ Sleep_dataset <- read.csv(file_path)
 
 ```
 
-```{r, echo=FALSE}
+```{r tło, echo=FALSE}
+
+```
+
+```{r theme, echo=FALSE}
 style_xaringan(
   title_slide_background_image = "img/tłobluepink.png"
 )
+
+style_mono_accent(
+  base_color = "#2C436F", # kolr tekstu nagłówka 
+  background_color = "#D996A7", # kolor tła
+  inverse_background_color = "#9AC3E6", # inverse kolor tła
+  inverse_header_color = "#FFFFFF",     # linverse kolor nagłówka
+  text_color = "#FFFFFF", # kolor tekstu
+  inverse_text_color = "#FFFFFF" # inverse kolor tekstu
+  ) 
 ```
 
-class: inverse, center, middle
-# **Cel Badawczy**
+class: center, middle
+
+# Cel Badawczy
 Nasze badanie ma na celu analizę zestawu danych dotyczących snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Naszym głównym celem jest identyfikacja potencjalnych zależności i wzorców, przy skoncentrowaniu uwagi nie tylko na różnicach między poszczególnymi profesjami, ale także na powiązaniach z poziomem doświadczanego stresu. Chcemy lepiej zrozumieć, czy istnieją konkretne grupy zawodowe, które bardziej niż inne doświadczają trudności związanych ze snem i czy te trudności mogą być powiązane z poziomem stresu w danym środowisku zawodowym.
 
 ---
-class: inverse, center, middle
+class: center, middle
+
 # O bazie danych
 Zestaw danych dotyczący snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. Zmienne, na podstawie których została wykonana analiza to:
 
@@ -69,23 +84,33 @@ names(Sleep_dataset)
 ```
 
 ---
+class: inverse, center, middle
 
 # Dane demograficzne:
 ```{r rozkład wieku, echo=FALSE, warning=FALSE}
+# funkcja do ustawienia kolorów dla tytułów i tła wykresów
+set_plot_colors <- function(plot, title_color, background_color) {
+  plot + 
+    theme(plot.title = element_text(color = title_color)) +
+    theme(panel.background = element_rect(fill = background_color))
+}
 # wykres płci
 plot_gender <- ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
-  geom_bar() +
+  geom_bar(show.legend = FALSE) +
   geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white") +
   labs(title = "Rozkład płci", x = "Płeć", y = "Liczba osób") +
-  scale_fill_manual(values = c("#9999CC", "#66CC99")) +
-  theme(panel.background = element_rect(fill = "#FCE4EC"))
+  theme_xaringan()
 
 # wykres wieku
 plot_age <- ggplot(Sleep_dataset, aes(x = Age, fill = Age)) +
-  geom_histogram(binwidth = 5, color = "#871F78", position = "identity") +
+  geom_histogram(binwidth = 5, position = "identity") +
   scale_fill_viridis_c() +
-  labs(title = "Rozkład Wieku", x = "Wiek", y = "Liczba osób") +
-  theme(panel.background = element_rect(fill = "#FCE4EC"))
+  labs(title = "Rozkład Wieku", x = "Wiek") +
+  theme_xaringan()
+
+# ustawienie kolorów tła 
+plot_gender <- set_plot_colors(plot_gender, "#2C436F", "#D996A7")
+plot_age <- set_plot_colors(plot_age, "#2C436F", "#D996A7")
 
 # umieszczenie wykresów na slajdzie obok siebie
 combined_plot <- plot_grid(plot_gender, plot_age, ncol = 2)
@@ -96,6 +121,7 @@ print(combined_plot)
 ---
 
 class: center, middle
+
 # Najistotniejsze statystyki dla tej analizy:
 ```{r średnie_mediany, echo=FALSE}
 #  średnie
