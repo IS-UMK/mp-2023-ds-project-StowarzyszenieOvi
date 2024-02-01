@@ -51,7 +51,7 @@ Sleep_dataset <- read.csv(file_path)
 
 ```{r, echo=FALSE}
 style_xaringan(
-  title_slide_background_image = "img/background_img2.webp"
+  title_slide_background_image = "img/tłobluepink.png"
 )
 ```
 
