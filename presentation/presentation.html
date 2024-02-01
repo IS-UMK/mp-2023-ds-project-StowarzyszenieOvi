@@ -4,7 +4,7 @@
     <title>Sleep Health and Lifestyle Dataset</title>
     <meta charset="utf-8" />
     <meta name="author" content="StowarzyszenieOvi   viol68, Tamirami, rvai00" />
-    <meta name="date" content="2024-01-31" />
+    <meta name="date" content="2024-02-01" />
     <script src="libs/header-attrs-2.25/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
   </head>
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Sleep Health and Lifestyle Dataset
 ]
 .subtitle[
-## Analiza jakości snu a lifestylem
+## Analiza jakości snu na podstawie stylu życia
 ]
 .author[
 ### StowarzyszenieOvi <br> viol68, Tamirami, rvai00
@@ -25,7 +25,7 @@ class: center, middle, inverse, title-slide
 ### Nicolaus Copernicus University in Toruń
 ]
 .date[
-### 2024-01-31
+### 2024-02-01
 ]
 
 ---
@@ -42,12 +42,12 @@ class: center, middle, inverse, title-slide
 
 class: inverse, center, middle
 # **Cel Badawczy**
-Nasza praca na celu analizę zbioru danych dotyczącego snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Dążymy do zidentyfikowania potencjalnych zależności i wzorców, skupiając się na różnicach wynikających z różnych profesji. Zależy nam na zrozumieniu, czy istnieją konkretne zawody, które bardziej niż inne doświadczają trudności związanych ze snem.
+Nasze badanie ma na celu analizę zestawu danych dotyczących snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Naszym głównym celem jest identyfikacja potencjalnych zależności i wzorców, przy skoncentrowaniu uwagi nie tylko na różnicach między poszczególnymi profesjami, ale także na powiązaniach z poziomem doświadczanego stresu. Chcemy lepiej zrozumieć, czy istnieją konkretne grupy zawodowe, które bardziej niż inne doświadczają trudności związanych ze snem i czy te trudności mogą być powiązane z poziomem stresu w danym środowisku zawodowym.
 
 ---
 class: inverse, center, middle
 # O bazie danych
-Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. Zmienne, na podstawie których została wykonana analiza to:
+Zestaw danych dotyczący snu i stylu życia zawiera 400 wierszy i 13 kolumn, obejmujących szeroki zakres zmiennych związanych ze snem i codziennymi nawykami. Zmienne, na podstawie których została wykonana analiza to:
 
 
 ```
@@ -60,165 +60,93 @@ Zestaw danych dotyczący zdrowia snu i stylu życia zawiera 400 wierszy i 13 kol
 ## [13] "Sleep.Disorder"
 ```
 
+---
+
+# Dane demograficzne:
+&lt;img src="presentation_files/figure-html/rozkład wieku-1.png" width="80%" /&gt;
 
 ---
-#Właściwości danych
-.pull-left[
-Person ID: Identyfikator dla każdej jednostki.
 
-Gender: Płeć osoby (Male/Female).
-
-Age: Wiek osoby w latach.
-
-Occupation: Zawód lub profesja osoby.
-
-Sleep Duration (hours): Ilość godzin snu danej osoby dziennie.
-
-Quality of Sleep (scale: 1-10): Subiektywna ocena jakości snu, w skali od 1 do 10.
-
-Physical Activity Level (minutes/day): Ilość minut, przez które osoba angażuje się w aktywność fizyczną codziennie.$^*$
-]
-.pull-right[
-Stress Level (skala: 1-10): Subiektywna ocena poziomu stresu doświadczanego przez osobę, w skali 1- 10.
-BMI Category: Kategoria BMI osoby (np. Underweight, Normal, Overweight).
-
-Blood Pressure (systolic/diastolic): Pomiar ciśnienia krwi osoby, określony jako ciśnienie skurczowe nad ciśnieniem rozkurczowym.
-
-Heart Rate (bpm): Spoczynkowe tętno serca osoby, wyrażone w uderzeniach na minutę.
-
-Daily Steps: Ilość kroków, które osoba wykonuje dziennie.
-
-Sleep Disorder: Obecność lub brak zaburzeń snu u danej osoby (None, Insomnia, Sleep Apnea).
-]
+class: center, middle
+# Najistotniejsze statystyki dla tej analizy:
 
 
-
-
-
-
-
----
-#Liczba kobiet i mężczyzn w badaniu
-
-&lt;img src="presentation_files/figure-html/unnamed-chunk-4-1.png" width="80%" /&gt;
-
-
-
-
-
-
-
----
-#Wykonywane zawody przez badanych
-&lt;img src="presentation_files/figure-html/unnamed-chunk-5-1.png" width="80%" /&gt;
-
-
-
-
-
-
-
----
-&lt;img src="presentation_files/figure-html/unnamed-chunk-6-1.png" width="80%" /&gt;
-
-
-
-
-
-
----
 
 ```
-## `geom_smooth()` using formula = 'y ~ x'
+## [1] "Średnie:"
 ```
 
-&lt;img src="presentation_files/figure-html/unnamed-chunk-7-1.png" width="80%" /&gt;
+```
+##   Sleep_Duration Quality_of_Sleep Stress_Level
+## 1       7.132086         7.312834     5.385027
+```
+
+```
+## [1] "Mediany:"
+```
+
+```
+##   Sleep_Duration Quality_of_Sleep Stress_Level
+## 1            7.2                7            5
+```
+
+---
+
+# Analiza korelacji między zmiennymi
+
+&lt;img src="presentation_files/figure-html/matrix-1.png" width="80%" /&gt;
+
+---
 
 
 
+```
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+```
 
+&lt;img src="presentation_files/figure-html/jakość_snu__vs_długość-1.png" width="80%" /&gt;
+
+---
+
+
+
+```
+## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
+```
+
+&lt;img src="presentation_files/figure-html/jakość_snu_vs_stres-1.png" width="80%" /&gt;
+
+---
+
+&lt;img src="presentation_files/figure-html/steps_vs_stres-1.png" width="80%" /&gt;
+
+---
+
+&lt;img src="presentation_files/figure-html/zawody-1.png" width="80%" /&gt;
 
 
 ---
+
 #Długość snu w zależności od wykonywanego zawodu
 
-&lt;img src="presentation_files/figure-html/unnamed-chunk-8-1.png" width="80%" /&gt;
-
-
+&lt;img src="presentation_files/figure-html/zawód_długość-1.png" width="80%" /&gt;
 
 ---
-&lt;img src="presentation_files/figure-html/unnamed-chunk-9-1.png" width="80%" /&gt;
 
+#Relacja między ilością wykonywanych kroków a profesją
 
-
-
----
-#Długość snu w zależności od aktywności fizycznej
-- Ludzie, którzy dłużej śpią mają większy poziom aktywności fizycznej
-
-```
-## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-```
-
-&lt;img src="presentation_files/figure-html/unnamed-chunk-10-1.png" width="80%" /&gt;
-
-
-
+&lt;img src="presentation_files/figure-html/zawód_kroki-1.png" width="80%" /&gt;
 
 ---
-#Aktywność fizyczna i liczba kroków dziennych wykazywały silną korelację wynoszącą 0,77.
 
+#Relacja między profesją a poziomem stresu
 
-```
-##                                Age Sleep.Duration Quality.of.Sleep
-## Age                      1.0000000     0.34470936       0.47373388
-## Sleep.Duration           0.3447094     1.00000000       0.88321300
-## Quality.of.Sleep         0.4737339     0.88321300       1.00000000
-## Physical.Activity.Level  0.1789927     0.21236031       0.19289645
-## Stress.Level            -0.4223445    -0.81102303      -0.89875203
-## Heart.Rate              -0.2256062    -0.51645489      -0.65986473
-## Daily.Steps              0.0579734    -0.03953254       0.01679141
-##                         Physical.Activity.Level Stress.Level  Heart.Rate
-## Age                                  0.17899272  -0.42234448 -0.22560619
-## Sleep.Duration                       0.21236031  -0.81102303 -0.51645489
-## Quality.of.Sleep                     0.19289645  -0.89875203 -0.65986473
-## Physical.Activity.Level              1.00000000  -0.03413446  0.13697098
-## Stress.Level                        -0.03413446   1.00000000  0.67002646
-## Heart.Rate                           0.13697098   0.67002646  1.00000000
-## Daily.Steps                          0.77272305   0.18682895 -0.03030858
-##                         Daily.Steps
-## Age                      0.05797340
-## Sleep.Duration          -0.03953254
-## Quality.of.Sleep         0.01679141
-## Physical.Activity.Level  0.77272305
-## Stress.Level             0.18682895
-## Heart.Rate              -0.03030858
-## Daily.Steps              1.00000000
-```
+&lt;img src="presentation_files/figure-html/zawód_stres-1.png" width="80%" /&gt;
 
+---
+# Analiza występowania zaburzeń snu wśród różnych profesji
 
-
-```
-## Warning in chisq.test(table(Sleep_dataset$Daily.Steps,
-## Sleep_dataset$Physical.Activity.Level)): Aproksymacja chi-kwadrat może być
-## niepoprawna
-```
-
-```
-## 
-## 	Pearson's Chi-squared test
-## 
-## data:  table(Sleep_dataset$Daily.Steps, Sleep_dataset$Physical.Activity.Level)
-## X-squared = 3822.1, df = 285, p-value &lt; 2.2e-16
-```
-
-
-```
-## `geom_smooth()` using method = 'loess' and formula = 'y ~ x'
-```
-
-&lt;img src="presentation_files/figure-html/unnamed-chunk-13-1.png" width="80%" /&gt;
-
+&lt;img src="presentation_files/figure-html/zawód_zaburzenia-1.png" width="80%" /&gt;
 
 
 ---
@@ -297,7 +225,7 @@ glance(model)
 - goes here
 ]
 .pull-right[
-&lt;img src="presentation_files/figure-html/unnamed-chunk-14-1.png" width="100%" /&gt;
+&lt;img src="presentation_files/figure-html/unnamed-chunk-4-1.png" width="100%" /&gt;
 ]
 
 ---

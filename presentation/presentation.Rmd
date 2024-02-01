@@ -26,6 +26,9 @@ library(datasets)
 library(ggplot2)
 library(kableExtra)
 library(corrplot)
+library(cowplot)
+library(viridis)
+library(patchwork)
 ```
 
 ```{r setup, include=FALSE}
@@ -66,36 +69,69 @@ names(Sleep_dataset)
 ```
 
 ---
-#Dane demograficzne
 
-```{r rozkład_płci, echo = FALSE}
-ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
+# Dane demograficzne:
+```{r rozkład wieku, echo=FALSE, warning=FALSE}
+# wykres płci
+plot_gender <- ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
   geom_bar() +
   geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white") +
+  labs(title = "Rozkład płci", x = "Płeć", y = "Liczba osób") +
   scale_fill_manual(values = c("#9999CC", "#66CC99")) +
-theme(panel.background = element_rect(fill = "#FCE4EC"))
-```
+  theme(panel.background = element_rect(fill = "#FCE4EC"))
 
-```{r rozkład_wieku, echo=FALSE}
-ggplot(Sleep_dataset, aes(x = Age, fill = Age)) +
+# wykres wieku
+plot_age <- ggplot(Sleep_dataset, aes(x = Age, fill = Age)) +
   geom_histogram(binwidth = 5, color = "#871F78", position = "identity") +
   scale_fill_viridis_c() +
   labs(title = "Rozkład Wieku", x = "Wiek", y = "Liczba osób") +
   theme(panel.background = element_rect(fill = "#FCE4EC"))
-```
 
+# umieszczenie wykresów na slajdzie obok siebie
+combined_plot <- plot_grid(plot_gender, plot_age, ncol = 2)
 
----
-#Wykonywane zawody przez badanych
-```{r, echo=FALSE}
-ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
-  geom_bar() +
-  labs(y = "Count") +
-  theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
+print(combined_plot)
 ```
 
 ---
+
+class: center, middle
+# Najistotniejsze statystyki dla tej analizy:
+```{r średnie_mediany, echo=FALSE}
+#  średnie
+averages <- Sleep_dataset %>%
+  summarise(
+    Sleep_Duration = mean(Sleep.Duration, na.rm = TRUE),
+    Quality_of_Sleep = mean(Quality.of.Sleep, na.rm = TRUE),
+    Stress_Level = mean(Stress.Level, na.rm = TRUE)
+  )
+
+# mediany
+medians <- Sleep_dataset %>%
+  summarise(
+    Sleep_Duration = median(Sleep.Duration, na.rm = TRUE),
+    Quality_of_Sleep = median(Quality.of.Sleep, na.rm = TRUE),
+    Stress_Level = median(Stress.Level, na.rm = TRUE)
+  )
+```
+
+```{r printing, echo=FALSE}
+print("Średnie:")
+print(averages)
+
+print("Mediany:")
+print(medians)
+
+```
+
+---
+
+# Analiza korelacji między zmiennymi
+
 ```{r matrix, fig.height=10, fig.width=10, echo=FALSE}
+#set.seed(42)
+#cor(Sleep_dataset[c(3, 5, 6, 7, 8, 11, 12)])
+
 numeric_Sleep_dataset <- Sleep_dataset[sapply(Sleep_dataset, is.numeric)]
 
 correlation_matrix <- cor(numeric_Sleep_dataset)
@@ -103,113 +139,109 @@ correlation_matrix <- cor(numeric_Sleep_dataset)
 corrplot(correlation_matrix, method="color", addCoef.col="black", tl.col="black", tl.srt=45)
 ```
 
-
-
-
-
-
 ---
-```{r, echo=FALSE}
 
-library(dplyr)
-library(ggplot2)
 
-# Calculate average stress level for each occupation
-average_stress_by_occupation <- Sleep_dataset %>%
-  group_by(Occupation) %>%
-  summarize(Average_Stress = mean(Stress.Level, na.rm = TRUE))
-
-# Create a histogram
-ggplot(average_stress_by_occupation, aes(x = reorder(Occupation, Average_Stress), y = Average_Stress, fill = Occupation)) +
-  geom_bar(stat = "identity", position = "dodge", color = "black") +
-  labs(title = "Average Stress Levels by Occupation",
-       x = "Occupation",
-       y = "Average Stress Level") +
-  scale_fill_manual(values = rainbow(nrow(average_stress_by_occupation))) +
-  theme_minimal() +
-  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```{r jakość_snu__vs_długość, echo=FALSE, warning=FALSE}
+ggplot() + 
+  geom_point(data = Sleep_dataset, mapping = aes(x = Quality.of.Sleep, y = Sleep.Duration)) +
+  geom_smooth(data = Sleep_dataset, mapping = aes(x = Quality.of.Sleep, y = Sleep.Duration)) +
+labs(title = "Wykres punktowy",
+         subtitle = "Zależność między jakością a długością snu",
+         x = "Jakość Snu",
+         y = "Długość Snu") +
+    theme_minimal()
 ```
 
+---
 
 
-
-
+```{r jakość_snu_vs_stres, echo=FALSE, warning=FALSE}
+ggplot() + 
+  geom_point(data = Sleep_dataset, mapping = aes(x = Stress.Level, y = Sleep.Duration)) +
+  geom_smooth(data = Sleep_dataset, mapping = aes(x = Stress.Level, y = Sleep.Duration)) +
+  labs(title = "Wykres punktowy",
+         subtitle = "Zależnośś jakości snu od poziomu stresu",
+         x = "Jakość Snu",
+         y = "Poziom Stresu") +
+    theme_minimal()
+```
 
 ---
-```{r, echo=FALSE}
-library(ggplot2)
 
-ggplot(data = Sleep_dataset, aes(x = `Quality.of.Sleep`, y = `Sleep.Duration`)) +
+```{r steps_vs_stres, echo=FALSE}
+ggplot(Sleep_dataset, aes(x = Daily.Steps, y = Stress.Level)) +
   geom_point() +
-  geom_smooth(method = "lm", se = FALSE) +
-  labs(title = "Relacja pomiędzy jakością snu a długością snu",
-       x = "Quality of Sleep",
-       y = "Sleep Duration")
+  labs(title = "Zależność ilości dziennych kroków od poziomu stresu",
+       x = "Ilość kroków w ciągu dnia",
+       y = "Poziom Stresu")
+```
 
+---
 
+```{r zawody, echo=FALSE}
+#Wykonywane zawody przez badanych
+ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
+  geom_bar() +
+  labs(title = "Rozkład profesji", y = "Ilość osób") +
+  theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
 ```
 
 
-
-
-
-
 ---
+
 #Długość snu w zależności od wykonywanego zawodu
 
-```{r, echo=FALSE}
+```{r zawód_długość, echo=FALSE}
 ggplot(Sleep_dataset, aes(y = `Sleep.Duration`)) +
   geom_bar() +
-  labs(x = "Count") +
+  labs(x = "Profesja", y = "Długość Snu") +
   theme(axis.text.x=element_text(size=7, angle=90,hjust=0.99)) +
   facet_wrap(vars(Occupation))
 ```
 
-
-
 ---
-```{r, echo=FALSE}
+
+#Relacja między ilością wykonywanych kroków a profesją
+
+```{r zawód_kroki, echo=FALSE}
 ggplot() + 
   geom_boxplot(data = Sleep_dataset, mapping = aes(y = `Daily.Steps`, x = Occupation)) +
   theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
 ```
 
+---
 
+#Relacja między profesją a poziomem stresu
 
+```{r zawód_stres, echo=FALSE}
+ggplot(Sleep_dataset, aes(x = Stress.Level, fill=as.factor(Stress.Level))) + 
+  geom_bar() +
+  labs(x = "Ilość", y = "Profesja") +
+  scale_fill_discrete(name = "Poziom Stresu") +
+  facet_wrap(vars(Occupation))
+```
 
 ---
-#Długość snu w zależności od aktywności fizycznej
-- Ludzie, którzy dłużej śpią mają większy poziom aktywności fizycznej
-```{r, echo=FALSE}
-ggplot() + 
-  geom_point(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Sleep.Duration`)) +
-  geom_smooth(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Sleep.Duration`))
+# Analiza występowania zaburzeń snu wśród różnych profesji
+
+```{r zawód_zaburzenia, echo=FALSE} 
+Sleep_dataset$Occupation <- factor(Sleep_dataset$Occupation, levels = unique(Sleep_dataset$Occupation))
+
+# Create the plot
+ggplot(Sleep_dataset, aes(x = Occupation, fill = Sleep.Disorder)) +
+  geom_bar(position = "dodge", color = "black", alpha = 0.8) +
+  labs(title = "Częstotliwość występowania zaburzeń snu",
+       subtitle = "w poszczególnych profesjach",
+       x = "Profesja",
+       y = "Ilość",
+       fill = "Zaburzenie snu") +
+  scale_fill_manual(values = c("Sleep Apnea" = "lightblue", "Insomnia" = "salmon", "None" = "yellow")) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        legend.position = "top") +
+  labs(fill = "Sleep Disorder")
 ```
-
-
-
-
----
-#Aktywność fizyczna i liczba kroków dziennych wykazywały silną korelację wynoszącą 0,77.
-
-```{r, echo=FALSE}
-set.seed(42)
-#Here I create a correlation matrix with all the quantitative variables
-cor(Sleep_dataset[c(3, 5, 6, 7, 8, 11, 12)])
-```
-
-
-```{r, echo=FALSE}
-chisq_steps_physical <- chisq.test(table(Sleep_dataset$`Daily.Steps`,Sleep_dataset$`Physical.Activity.Level`))
-chisq_steps_physical
-```
-
-```{r, echo=FALSE}
-ggplot() + 
-  geom_point(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Daily.Steps`)) +
-  geom_smooth(data = Sleep_dataset, mapping = aes(x = `Physical.Activity.Level`, y = `Daily.Steps`))
-```
-
 
 
 ---
