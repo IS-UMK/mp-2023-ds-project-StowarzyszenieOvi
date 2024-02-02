@@ -309,16 +309,8 @@ Analiza danych dotyczących snu i stylu życia ujawniła, że istnieje silna kor
 
 class: center, middle
 # Nasz wkład
-<img src="img/Deployments 1.png" alt="Screenshoty naszego wkładu" width="300"/>
-<img src="img/Deployments2.png" alt="Screenshoty naszego wkładu" width="300"/>
-<img src="img/Deployments3.png" alt="Screenshoty naszego wkładu" width="300"/>
+<img src="img/Contributions.PNG" alt="Screenshoty naszego wkładu" width="300"/>
 
-
----
-class: center, middle
-# Nasz wkład
-<img src="img/Deployments4.png" alt="Screenshoty naszego wkładu" width="300"/>
-<img src="img/Deployments5.png" alt="Screenshoty naszego wkładu" width="300"/>
 ---
 class: inverse, center, middle
 background-image: url(https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE)
