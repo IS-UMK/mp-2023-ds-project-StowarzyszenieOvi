@@ -1,6 +1,6 @@
 
 ---
-title: "Sleep Health and Lifestyle Dataset"
+title: "Sleep Health and Lifestylet"
 subtitle: "Analiza jakości snu na podstawie stylu życia"
 author: "StowarzyszenieOvi <br> viol68, Tamirami, rvai00"
 institute: "Nicolaus Copernicus University in Toruń"
@@ -49,16 +49,12 @@ Sleep_dataset <- read.csv(file_path)
 
 ```
 
-```{r tło, echo=FALSE}
-
-```
-
 ```{r theme, echo=FALSE}
 
 style_xaringan(
   title_slide_background_image = "img/tłobluepink.png"
+  
 )
-
 style_mono_accent(
   base_color = "#2C436F", # kolr tekstu nagłówka 
   background_color = "#D996A7", # kolor tła
@@ -70,10 +66,15 @@ style_mono_accent(
 
 ```
 
+
 class: center, middle
 
-# Cel Badawczy
+background-image: url(https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE)
+
+# Cel Badawczy 
 Nasze badanie ma na celu analizę zestawu danych dotyczących snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Naszym głównym celem jest identyfikacja potencjalnych zależności i wzorców, przy skoncentrowaniu uwagi nie tylko na różnicach między poszczególnymi profesjami, ale także na powiązaniach z poziomem doświadczanego stresu. Chcemy lepiej zrozumieć, czy istnieją konkretne grupy zawodowe, które bardziej niż inne doświadczają trudności związanych ze snem i czy te trudności mogą być powiązane z poziomem stresu w danym środowisku zawodowym.
+
+
 
 ---
 class: center, middle
@@ -89,7 +90,9 @@ names(Sleep_dataset)
 class: inverse, center, middle
 
 # Dane demograficzne:
-```{r rozkład wieku, echo=FALSE, warning=FALSE}
+
+```{r rozkład wieku, echo=FALSE, fig.height=6, fig.width=8, warning=FALSE}
+library(ggplot2)
 # funkcja do ustawienia kolorów dla tytułów i tła wykresów
 set_plot_colors <- function(plot, title_color, background_color) {
   plot + 
@@ -160,23 +163,33 @@ print(medians)
 
 ---
 
+class: inverse, center, middle
 # Analiza korelacji między zmiennymi
 
-```{r matrix, fig.height=10, fig.width=10, echo=FALSE}
-#set.seed(42)
-#cor(Sleep_dataset[c(3, 5, 6, 7, 8, 11, 12)])
+```{r, echo=FALSE}
+# set.seed(42)
+# cor(Sleep_dataset[c(3, 5, 6, 7, 8, 11, 12)])
 
 numeric_Sleep_dataset <- Sleep_dataset[sapply(Sleep_dataset, is.numeric)]
 
 correlation_matrix <- cor(numeric_Sleep_dataset)
 
-corrplot(correlation_matrix, method="color", addCoef.col="black", tl.col="black", tl.srt=45)
+# Plot the correlation matrix with smaller font size
+corrplot(correlation_matrix, method="color", addCoef.col="black", tl.col="black", tl.srt=45, number.cex=0.7)
+
 ```
 
 ---
 
+class: center, middle
+#Jakość snu vs długość
 
-```{r jakość_snu__vs_długość, echo=FALSE, warning=FALSE}
+
+
+
+
+
+```{r jakość_snu__vs_długość, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot() + 
   geom_point(data = Sleep_dataset, mapping = aes(x = Quality.of.Sleep, y = Sleep.Duration)) +
   geom_smooth(data = Sleep_dataset, mapping = aes(x = Quality.of.Sleep, y = Sleep.Duration)) +
@@ -188,9 +201,10 @@ labs(title = "Wykres punktowy",
 ```
 
 ---
+class:center, middle
+#Jakość snu vs stres
 
-
-```{r jakość_snu_vs_stres, echo=FALSE, warning=FALSE}
+```{r jakość_snu_vs_stres, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot() + 
   geom_point(data = Sleep_dataset, mapping = aes(x = Stress.Level, y = Sleep.Duration)) +
   geom_smooth(data = Sleep_dataset, mapping = aes(x = Stress.Level, y = Sleep.Duration)) +
@@ -202,8 +216,9 @@ ggplot() +
 ```
 
 ---
-
-```{r steps_vs_stres, echo=FALSE}
+class: inverse, center, middle
+#Ilość dziennych kroków vs stres
+```{r steps_vs_stres, echo=FALSE, message=FALSE, warning=FALSE}
 ggplot(Sleep_dataset, aes(x = Daily.Steps, y = Stress.Level)) +
   geom_point() +
   labs(title = "Zależność ilości dziennych kroków od poziomu stresu",
@@ -212,6 +227,8 @@ ggplot(Sleep_dataset, aes(x = Daily.Steps, y = Stress.Level)) +
 ```
 
 ---
+class:center, middle
+#Wykonywane zawody przez badanych
 
 ```{r zawody, echo=FALSE}
 #Wykonywane zawody przez badanych
@@ -220,11 +237,27 @@ ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
   labs(title = "Rozkład profesji", y = "Ilość osób") +
   theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
 ```
+---
+class:center, middle
+#Relacja między profesją a poziomem stresu
+.pull-left[
+-Lekarze, pielęgniarki i przedstawiciele handlowi doświadczali najwyższych poziomów stresu w porównaniu do innych zawodów. To sugeruje, że specyfika tych zawodów może wpływać na poziomy stresu u pracowników.
+ $^*$
+]
+.pull-right[
+```{r zawód_stres, echo=FALSE}
+ggplot(Sleep_dataset, aes(x = Stress.Level, fill=as.factor(Stress.Level))) + 
+  geom_bar() +
+  labs(x = "Ilość", y = "Profesja") +
+  scale_fill_discrete(name = "Poziom Stresu") +
+  facet_wrap(vars(Occupation))
+```
 
+]
 
 ---
-
-#Długość snu w zależności od wykonywanego zawodu
+class: inverse, center, middle
+#Długość snu a wykonywany zawód
 
 ```{r zawód_długość, echo=FALSE}
 ggplot(Sleep_dataset, aes(y = `Sleep.Duration`)) +
@@ -235,8 +268,8 @@ ggplot(Sleep_dataset, aes(y = `Sleep.Duration`)) +
 ```
 
 ---
-
-#Relacja między ilością wykonywanych kroków a profesją
+class:center, middle
+#Relacja: ilość dziennych kroków a profesja
 
 ```{r zawód_kroki, echo=FALSE}
 ggplot() + 
@@ -244,20 +277,10 @@ ggplot() +
   theme(axis.text.x=element_text(size=10, angle=45,hjust=0.95))
 ```
 
----
-
-#Relacja między profesją a poziomem stresu
-
-```{r zawód_stres, echo=FALSE}
-ggplot(Sleep_dataset, aes(x = Stress.Level, fill=as.factor(Stress.Level))) + 
-  geom_bar() +
-  labs(x = "Ilość", y = "Profesja") +
-  scale_fill_discrete(name = "Poziom Stresu") +
-  facet_wrap(vars(Occupation))
-```
 
 ---
-# Analiza występowania zaburzeń snu wśród różnych profesji
+class: inverse, center, middle
+# Zaburzenia snu wśród różnych profesji
 
 ```{r zawód_zaburzenia, echo=FALSE} 
 Sleep_dataset$Occupation <- factor(Sleep_dataset$Occupation, levels = unique(Sleep_dataset$Occupation))
@@ -277,157 +300,15 @@ ggplot(Sleep_dataset, aes(x = Occupation, fill = Sleep.Disorder)) +
   labs(fill = "Sleep Disorder")
 ```
 
+---
+class: center, middle
 
+#Podsumowanie
+Analiza danych dotyczących snu i stylu życia ujawniła, że istnieje silna korelacja między czasem trwania snu a poziomem stresu, gdzie osoby śpiące więcej wykazywały niższe poziomy stresu. Ponadto, zauważono, że dłuższy sen koreluje pozytywnie z lepszą jakością snu. W kontekście zawodów, lekarze, pielęgniarki i przedstawiciele handlowi doświadczali najwyższych poziomów stresu w porównaniu do innych zawodów, podczas gdy pielęgniarki wyróżniały się największą aktywnością fizyczną. Różnice płciowe również wpływały na poziomy stresu, a analiza zawodów ujawniła zróżnicowanie w wzorcach snu. Wskazuje to na kompleksowy wpływ snu, stresu i aktywności fizycznej na zdrowie ogólne, co może być istotne dla opracowania zaleceń dotyczących nawyków snu.
 ---
 class: inverse, center, middle
-
-# Section title
-
----
-
-# Hello World
-
-- Click the `Knit` button to compile your presentation
-
-- Make sure to commit and push all resulting files to your GitHub repo
+background-image: url(https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE)
+# Dziękujemy za uwagę
 
 ---
 
-class: inverse, middle, center
-
-# Using xaringan
-
----
-
-# xaringan
-
-- The presentation is created using the `xaringan` package
-
-- Use `---` to separate slides and `--` for incremental builds
-
---
- 
-- Like this
-
----
-
-# Layouts
-
-You can use plain text
-
-- or bullet points
-
-.pull-left[
-or text in two columns $^*$
-]
-.pull-right[
-- like
-- this
-]
-
-.footnote[
-[*] And add footnotes
-]
-
----
-
-# Code```{r boring-regression}
-# a boring regression
-model <- lm(dist ~ speed, data = cars)
-tidy(model)
-glance(model)
-```
----
-
-#Plots
-
-```{r recode-species, echo = FALSE}
-# In this chunk I'm doing a bunch of analysis that I don't want to present 
-# in my slides. But I need the resulting data frame for a plot I want to present.
-iris_modified <- iris |>
-  mutate(Species = fct_other(Species, keep = "setosa"))
-```
-
-```{r plot-iris, echo = FALSE}
-# Code hidden with echo = FALSE
-# Uses modified iris dataset from previous chunk
-# Play around with height and width until you're happy with the look
-ggplot(data = iris_modified, mapping = aes(x = Sepal.Width, y = Sepal.Length, color = Species)) +
-  geom_point() + 
-  theme_minimal() # theme options: https://ggplot2.tidyverse.org/reference/ggtheme.html
-```
-
----
-
-## Plot and text
-
-.pull-left[
-- Some text
-- goes here
-]
-.pull-right[
-```{r warning=FALSE, out.width="100%", fig.width=4, echo=FALSE}
-# see how I changed out.width and fig.width from defaults
-# to make the figure bigger
-ggplot(penguins, aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot() +
-  theme_minimal()
-```
-]
-
----
-
-# Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
-
-```{r iris-table, echo = FALSE}
-kable(head(iris), format = "html")
-```
-
----
-
-# Images
-
-```{r castle, echo = FALSE, out.width = "60%", fig.align = "center", fig.cap = "Image credit: Photo by Jörg Angeli on Unsplash."}
-include_graphics("https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80")
-```
-
-Or you can also include a full page image. See next slide.
-
----
-
-background-image: url(https://images.unsplash.com/photo-1535448033526-c0e85c9e6968?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80)
-
----
-
-# Math Expressions
-
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. &#36;\alpha+\beta$ renders $\alpha+\beta$. You can use the display style with double dollar signs:
-
-```
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
-
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-
-Limitations:
-
-1. The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
-
-1. There should not be spaces after the opening `$` or before the closing `$`.
-
-1. Math does not work on the title slide (see [#61](https://github.com/yihui/xaringan/issues/61) for a workaround).
-
----
-
-# Feeling adventurous?
-
-- Want to find out more about `xaringan`? See https://slides.yihui.name/xaringan/#1.
-
-- You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
-- But some of you might want to play around with slide styling. The 
-`xaringanthemer` provides some solutions for this that: https://pkg.garrickadenbuie.com/xaringanthemer.
-
-- And if you want more bells and whistles, there is also `xaringanExtra`: https://pkg.garrickadenbuie.com/xaringanExtra.
