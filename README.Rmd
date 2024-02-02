@@ -45,4 +45,4 @@ Date accessed: 28.01.2024 r.
 ## References
 
 Strona, z której wzieliśmy naszą bazę danych: https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
-
+Zdjęcie z 2 oraz 17 slajdu : https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE
