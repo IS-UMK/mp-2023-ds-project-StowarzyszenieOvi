@@ -14,6 +14,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
+
 ---
 ```{r load-packages, include = FALSE}
 # Add any additional packages you need to this chunk
@@ -33,7 +34,7 @@ library(patchwork)
 
 ```{r setup, include=FALSE}
 # For better figure resolution
-knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "80%")
+knitr::opts_chunk$set(fig.retina = 3, dpi = 300, fig.width = 6, fig.asp = 0.618, out.width = "75%")
 ```
 
 ```{r, include=FALSE}
@@ -69,7 +70,6 @@ style_mono_accent(
 
 class: center, middle
 
-background-image: url(https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE)
 
 # Cel Badawczy 
 Nasze badanie ma na celu analizę zestawu danych dotyczących snu i stylu życia, ze szczególnym uwzględnieniem zawodów respondentów. Naszym głównym celem jest identyfikacja potencjalnych zależności i wzorców, przy skoncentrowaniu uwagi nie tylko na różnicach między poszczególnymi profesjami, ale także na powiązaniach z poziomem doświadczanego stresu. Chcemy lepiej zrozumieć, czy istnieją konkretne grupy zawodowe, które bardziej niż inne doświadczają trudności związanych ze snem i czy te trudności mogą być powiązane z poziomem stresu w danym środowisku zawodowym.
