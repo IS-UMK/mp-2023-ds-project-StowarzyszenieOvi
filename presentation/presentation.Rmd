@@ -240,8 +240,8 @@ ggplot(Sleep_dataset, aes(x = Occupation, fill=Occupation)) +
 class:center, middle
 #Relacja między profesją a poziomem stresu
 .pull-left[
--Lekarze, pielęgniarki i przedstawiciele handlowi doświadczali najwyższych poziomów stresu w porównaniu do innych zawodów. To sugeruje, że specyfika tych zawodów może wpływać na poziomy stresu u pracowników.
- $^*$
+Lekarze, pielęgniarki i przedstawiciele handlowi doświadczali najwyższych poziomów stresu w porównaniu do innych zawodów. To sugeruje, że specyfika tych zawodów może wpływać na poziomy stresu u pracowników.
+
 ]
 .pull-right[
 ```{r zawód_stres, echo=FALSE}
