@@ -305,6 +305,10 @@ class: center, middle
 #Podsumowanie
 Analiza danych dotyczących snu i stylu życia ujawniła, że istnieje silna korelacja między czasem trwania snu a poziomem stresu, gdzie osoby śpiące więcej wykazywały niższe poziomy stresu. Ponadto, zauważono, że dłuższy sen koreluje pozytywnie z lepszą jakością snu. W kontekście zawodów, lekarze, pielęgniarki i przedstawiciele handlowi doświadczali najwyższych poziomów stresu w porównaniu do innych zawodów, podczas gdy pielęgniarki wyróżniały się największą aktywnością fizyczną. Różnice płciowe również wpływały na poziomy stresu, a analiza zawodów ujawniła zróżnicowanie w wzorcach snu. Wskazuje to na kompleksowy wpływ snu, stresu i aktywności fizycznej na zdrowie ogólne, co może być istotne dla opracowania zaleceń dotyczących nawyków snu.
 ---
+class: center, middle
+#Nasz wkład
+<img src="img/Contributions.PNG" alt="Screenshoty naszego wkładu" width="400"/>
+---
 class: inverse, center, middle
 background-image: url(https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE)
 # Dziękujemy za uwagę
