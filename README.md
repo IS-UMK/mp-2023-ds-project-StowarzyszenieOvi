@@ -4,20 +4,14 @@ by StowarzyszenieOvi
 
 ## Summary
 
-Write-up of your project and findings go here. Think of this as the text
-of your presentation. The length should be roughly 5 minutes when read
-out loud. Although pacing varies, a 5-minute speech is roughly 750
-words. To count the words, select `Word Count` from the `Edit` menu.
-This tool will only count the words in prose and comments in code
-chunks, but ignore the rest parts of code chunks.
+W dzisiejszym zabieganym świecie, w którym tempo życia nieustannie przyspiesza, zadbanie o zdrowie psychiczne i fizyczne staje się niezmiernie istotne. Jednym z kluczowych elementów utrzymania równowagi zdrowotnej jest jakość snu. Wartościowy sen wpływa nie tylko na naszą wydajność i energię w ciągu dnia. Przez zrozumienie relacji między snem a codziennymi nawykami możemy lepiej zharmonizować nasze życie, przyczyniając się do długotrwałego dobrostanu zarówno psychicznego, jak i fizycznego. 
 
-You can also load your data here and present any analysis results /
-plots, but I strongly urge you to keep that to a minimum (maybe only the
-most important graphic, if you have one you can choose). And make sure
-to hide your code with `echo = FALSE` unless the point you are trying to
-make is about the code itself. Your results with proper output and
-graphics go in your presentation, this space is for a brief summary of
-your project.
+Skoro przeciętny człowiek w ciągu swojego całego życia spędza w pracy 36,2 lat, to zadaliśmy sobie pytanie czy rodzaj wykonywanego zawodu ma istotny wpływ na nasz sen? Czy wsytępują różnice w grupach zawodowych pod względem jakości snu  i czy można zidentyfikować konkretne profesje, w których trudności ze snem wydają się bardziej związane z poziomem doświadczanego stresu? Czy są profesje, które są bardziej narażone na zaburzenia snu?
+
+W celu znalezienia odpowiedzi na te pytania wykorzystaliśmy język R oraz narzędzia dostępne w Rmarkdown, aby przeprowadzić analizę danych dotyczącą relacji między zmiennymi. W pierwszym etapie analizy skoncentrowaliśmy się na znalezieniu korelacji między różnymi zmiennymi, co pozwoliło nam lepiej zrozumieć ewentualne powiązania między snem a innymi czynnikami. Następnie wykorzystaliśmy wykresy słupkowe oraz punktowe do wizualnego przedstawienia rozkładu danych, co umożliwiło bardziej czytelne zobrazowanie różnic, np. między grupami zawodowymi.
+
+Okazało się, że lekarze, pielęgniarki i przedstawiciele handlowi doświadczali najwyższych poziomów stresu. Inżynierowie mieli najdłuższy sen, podczas gdy nauczyciele i przedstawiciele handlowi spali najkrócej. W takim razie analiza sugeruje, że istnieje związek między rodzajem zawodu a poziomem stresu pracowników, a co za tym idzie - rodzaj zawodu ma istotny wpływ na długość i jakość snu. 
+
 
 ## Presentation
 
@@ -25,12 +19,17 @@ Our presentation can be found [here](presentation/presentation.html).
 
 ## Data
 
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
+Author:LAKSIKA THARMALINGAM
+Date of publication: 2023
+Title of dataset: Sleep Health and Lifestyle Dataset
+Version: Version 2 (24.14 kB)
+Publisher: https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
+Persistent locator/identifier (e.g., DOI): -
+Date accessed: 28.01.2024 r.
+
+
 
 ## References
 
-List any references here. You should, at a minimum, list your data
-source.
+Strona z naszą bazą danych: https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
+Zdjęcie z 2 oraz 17 slajdu : https://sozaino.site/wp-content/uploads/2023/07/guradesora16.png?fbclid=IwAR1QT6qaMG0q8ZEb58hSTHr18KEJGSuZbGdMJt1Wj_qI8II8UMxAZ3q2hnE
