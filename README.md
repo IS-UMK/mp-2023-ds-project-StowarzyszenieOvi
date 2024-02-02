@@ -25,10 +25,15 @@ Our presentation can be found [here](presentation/presentation.html).
 
 ## Data
 
-Include a citation for your data here. See
-<http://libraryguides.vu.edu.au/c.php?g=386501&p=4347840> for guidance
-on proper citation for datasets. If you got your data off the web, make
-sure to note the retrieval date.
+Author:LAKSIKA THARMALINGAM
+Date of publication: 2023
+Title of dataset: Sleep Health and Lifestyle Dataset
+Version: Version 2 (24.14 kB)
+Publisher: https://www.kaggle.com/datasets/uom190346a/sleep-health-and-lifestyle-dataset
+Persistent locator/identifier (e.g., DOI): -
+Date accessed: 28.01.2024 r.
+
+
 
 ## References
 
