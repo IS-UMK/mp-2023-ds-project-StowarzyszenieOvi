@@ -102,7 +102,7 @@ set_plot_colors <- function(plot, title_color, background_color) {
 plot_gender <- ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
   geom_bar(show.legend = FALSE) +
   geom_text(aes(label = after_stat(count)), stat = "count", vjust = 1.5, colour = "white") +
-  labs(title = "Rozkład płci", x = "Płeć", y = "Liczba osób") +
+  labs(title = "Rozkład płci", x = "Płeć", y = "Ilość osób") +
   theme_xaringan() +
   theme(
     plot.background = element_rect(fill = "#9AC3E6")    # Kolor tła obszaru całego wykresu
@@ -112,7 +112,7 @@ plot_gender <- ggplot(Sleep_dataset, aes(x = Gender, fill = Gender)) +
 plot_age <- ggplot(Sleep_dataset, aes(x = Age, fill = Age)) +
   geom_histogram(binwidth = 5, position = "identity", fill = "#F28705") +
   scale_fill_viridis_c() +
-  labs(title = "Rozkład Wieku", x = "Ilość osób", y = "Ilość osób") +
+  labs(title = "Rozkład Wieku", x = "Wiek", y = "Ilość osób") +
   theme_xaringan() +
   theme(
     plot.background = element_rect(fill = "#9AC3E6")    # Kolor tła obszaru całego wykresu
